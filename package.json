@@ -1,0 +1,36 @@
+{
+  "name": "@theleepriest/simple-react-carousel",
+  "version": "1.0.0",
+  "description": "A simple react based carousel",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "scripts": {
+    "dev": "parcel src/index.js",
+    "build": "parcel src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheLeePriest/simple-react-carousel.git"
+  },
+  "keywords": [
+    "react",
+    "carousel"
+  ],
+  "author": "Lee Priest",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheLeePriest/simple-react-carousel/issues"
+  },
+  "homepage": "https://github.com/TheLeePriest/simple-react-carousel#readme",
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "parcel": "^1.12.4"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@theleepriest/simple-react-carousel-examples",
+  "version": "1.0.0",
+  "description": "Simple react carousel examples",
+  "scripts": {
+    "dev": "parcel public/index.html",
+    "build": "parcel public/index.html"
+  },
+  "author": "Lee Priest",
+  "license": "MIT",
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "link:../node_modules/react",
+    "react-dom": "^16.13.1",
+    "@theleepriest/simple-react-carousel": "link:.."
+  },
+  "devDependencies": {
+    "parcel": "^1.12.4"
+  }
+}
