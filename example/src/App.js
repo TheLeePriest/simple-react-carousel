@@ -7,6 +7,7 @@ const App = () => {
   return (
     <SimpleCarousel>
       <img src="https://picsum.photos/200" />
+      <h1>Hello</h1>
       <img src="https://picsum.photos/200" />
       <img src="https://picsum.photos/200" />
       <img src="https://picsum.photos/200" />

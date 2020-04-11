@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import styled from 'styled-components';
 import { store } from "../../store/store";
 import CarouselItem from "./CarouselItem";
@@ -18,10 +18,33 @@ const CarouselWrapper = styled.div`
   transform: translateX(-${props => props.translateValue}px);
 `;
 
+const useWindowResizeEvent = () => {
+  const getWindowWidth = () => window.innerWidth;
+  const [windowWidth, setWindowWidth] = useState(getWindowWidth());
+
+  useEffect(() => {
+    const resize = () => {
+      setWindowWidth(getWindowWidth());
+    };
+
+    window.addEventListener('resize', resize);
+
+    return () => {window.removeEventListener('resize', resize)};
+  }, []);
+
+  console.log(windowWidth, 'inside the hook')
+  return windowWidth;
+};
+
 const Carousel = ({ children }) => {
   const { state, dispatch } = useContext(store);
   const { activeItem, carouselWidth, translateValue } = state;
   const wrapperRef = useRef(null);
+  const windowWidth = useWindowResizeEvent();
+
+  useEffect(() => {
+    dispatch({type: 'setTranslateValue', payload: activeItem * getWidth()});
+  }, [windowWidth]);
 
   useEffect(() => {
       const {width} = wrapperRef.current.getBoundingClientRect();
