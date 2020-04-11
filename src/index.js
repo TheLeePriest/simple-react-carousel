@@ -1,10 +1,7 @@
-import React, {useEffect} from 'react'
+import React from 'react'
+import { StateProvider } from './store/store';
+import Carousel from './components/Carousel/Carousel';
 
-const SimpleCarousel = ({ children }) => {
-  useEffect(() => {
-    console.log('The use effect works!')
-  }, [])
-  return <div>{children}</div>
-};
+const SimpleCarousel = ({ children }) => <StateProvider childCount={children.length}><Carousel>{children}</Carousel></StateProvider>;
 
 export default SimpleCarousel;
