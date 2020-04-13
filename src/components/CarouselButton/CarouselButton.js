@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { store } from "../../store/store";
+import NextChevron from "../SVG/NextChevron";
+import PreviousChevron from "../SVG/PreviousChevron";
 
 const CarouselButtonElement = styled.button`
   position: absolute;
@@ -38,9 +40,17 @@ const CarouselButton = ({ previous }) => {
     handleNext();
   };
 
+  const renderButtonBody = () => {
+    if(previous) {
+      return <PreviousChevron />
+    }
+
+    return <NextChevron />
+  };
+
   return (
     <CarouselButtonElement onClick={handleClick} previous={previous}>
-      {previous ? "Prev" : "Next"}
+      {renderButtonBody()}
     </CarouselButtonElement>
   );
 };
