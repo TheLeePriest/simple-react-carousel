@@ -1,94 +1,83 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { store } from "../../store/store";
-import CarouselItem from "./CarouselItem";
+import CarouselItem from "../CarouselItem/CarouselItem";
+import useWindowResizeEvent from "../../hooks/useWindowResizeEvent";
+import CarouselButton from "../CarouselButton/CarouselButton";
 
 const Wrapper = styled.div`
   width: 100%;
-  overflow:hidden;
+  overflow: hidden;
+  position: relative;
 `;
 
-const CarouselWrapper = styled.div`
+const CarouselWrapper = styled.ul`
   width: 100%;
   display: flex;
   flex-wrap: no-wrap;
   transition: all 250ms ease-in-out;
   position: relative;
   width: ${props => props.width}px;
-  transform: translateX(-${props => props.translateValue}px);
+  padding: 0;
+  margin: 0;
+  list-style: none;
 `;
 
-const useWindowResizeEvent = () => {
-  const getWindowWidth = () => window.innerWidth;
-  const [windowWidth, setWindowWidth] = useState(getWindowWidth());
-
-  useEffect(() => {
-    const resize = () => {
-      setWindowWidth(getWindowWidth());
-    };
-
-    window.addEventListener('resize', resize);
-
-    return () => {window.removeEventListener('resize', resize)};
-  }, []);
-
-  console.log(windowWidth, 'inside the hook')
-  return windowWidth;
+const getWidth = element => {
+  if (element) {
+    const { width } = element.getBoundingClientRect();
+    return width;
+  }
 };
 
 const Carousel = ({ children }) => {
   const { state, dispatch } = useContext(store);
-  const { activeItem, carouselWidth, translateValue } = state;
+  const { activeItem, translateValue, autoPlay, autoChangeTime } = state;
   const wrapperRef = useRef(null);
   const windowWidth = useWindowResizeEvent();
+  const autoPlayRef = useRef(null);
+
+  // useEffect(() => {
+  //   autoPlayRef.current = handleNext;
+  // });
+  //
+  // useEffect(() => {
+  //   if(autoPlay) {
+  //     const play = () => {
+  //       autoPlayRef.current()
+  //     };
+  //
+  //     const interval = setInterval(play, autoChangeTime * 1000);
+  //     return () => clearInterval(interval)
+  //   }
+  // }, []);
 
   useEffect(() => {
-    dispatch({type: 'setTranslateValue', payload: activeItem * getWidth()});
+    dispatch({
+      type: "setTranslateValue",
+      payload: activeItem * getWidth(wrapperRef.current)
+    });
   }, [windowWidth]);
 
   useEffect(() => {
-      const {width} = wrapperRef.current.getBoundingClientRect();
-      dispatch({type: 'setCarouselWidth', payload: width})
+    const { width } = wrapperRef.current.getBoundingClientRect();
+    dispatch({ type: "setCarouselWidth", payload: width });
   }, [wrapperRef]);
 
-  const getWidth = () => {
-    if(wrapperRef.current) {
-      const {width} = wrapperRef.current.getBoundingClientRect();
-      return width;
-    }
-  };
-
-  const renderChildren = () => children.map((child, i) => (<CarouselItem key={i}>{child}</CarouselItem>));
-
-  const handleNext = () => {
-    if (activeItem === children.length - 1) {
-      dispatch({type: 'setTranslateValue', payload: 0});
-      dispatch({type: 'updateActiveItem', payload: 0});
-      return;
-    }
-
-    dispatch({type: 'updateActiveItem', payload: activeItem + 1});
-    dispatch({type: 'setTranslateValue', payload: (activeItem + 1) * getWidth()})
-  };
-
-  const handlePrev = () => {
-    if (activeItem === 0) {
-      dispatch({type: 'setTranslateValue', payload: (children.length -1) * getWidth()});
-      dispatch({type: 'updateActiveItem', payload: children.length -1});
-      return;
-    }
-
-    dispatch({type: 'updateActiveItem', payload: activeItem - 1});
-    dispatch({type: 'setTranslateValue', payload: (activeItem - 1) * getWidth()})
-  };
+  const renderChildren = () =>
+    children.map((child, i) => <CarouselItem key={i}>{child}</CarouselItem>);
 
   return (
-    <Wrapper ref={wrapperRef}>
-      <button onClick={handlePrev}> Prev </button>
-      <CarouselWrapper translateValue={translateValue} width={getWidth() * children.length}>
+    <Wrapper tabIndex={0} ref={wrapperRef}>
+      <CarouselButton previous />
+      <CarouselWrapper
+        translateValue={translateValue}
+        width={getWidth(wrapperRef.current) * children.length}
+        style={{ transform: `translate(-${translateValue}px, 0)` }}
+      >
         {renderChildren()}
       </CarouselWrapper>
-      <button onClick={handleNext}> Next </button>
+      <CarouselButton />
     </Wrapper>
   );
 };

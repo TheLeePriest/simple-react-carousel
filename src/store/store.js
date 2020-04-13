@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const store = createContext({});
 const { Provider } = store;
 
-const StateProvider = ({children, childCount}) => {
+const StateProvider = ({children, childCount, autoPlay = false, autoChangeTime = 3}) => {
   const [state, dispatch] = useReducer(
     (state, { type, payload }) => {
       switch (type) {
@@ -23,6 +23,8 @@ const StateProvider = ({children, childCount}) => {
       childCount,
       translateValue: 0,
       carouselWidth: 0,
+      autoPlay,
+      autoChangeTime,
     }
   );
 
