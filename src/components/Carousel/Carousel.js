@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect, useState } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { store } from "../../store/store";
 import CarouselItem from "../CarouselItem/CarouselItem";
@@ -32,25 +32,33 @@ const getWidth = element => {
 
 const Carousel = ({ children }) => {
   const { state, dispatch } = useContext(store);
-  const { activeItem, translateValue, autoPlay, autoChangeTime } = state;
+  const { activeItem, translateValue, autoPlay, autoChangeTime, childCount } = state;
   const wrapperRef = useRef(null);
   const windowWidth = useWindowResizeEvent();
   const autoPlayRef = useRef(null);
 
-  // useEffect(() => {
-  //   autoPlayRef.current = handleNext;
-  // });
-  //
-  // useEffect(() => {
-  //   if(autoPlay) {
-  //     const play = () => {
-  //       autoPlayRef.current()
-  //     };
-  //
-  //     const interval = setInterval(play, autoChangeTime * 1000);
-  //     return () => clearInterval(interval)
-  //   }
-  // }, []);
+  const handleNext = () => {
+    dispatch({
+      type: "setNextItem",
+      payload: { isLast: activeItem === childCount - 1 }
+    });
+  };
+
+  useEffect(() => {
+    autoPlayRef.current = handleNext;
+  });
+
+  useEffect(() => {
+    console.log(autoPlay, 'logging autoPlay in useEffect')
+    if(autoPlay) {
+      const play = () => {
+        autoPlayRef.current()
+      };
+
+      const interval = setInterval(play, autoChangeTime * 1000);
+      return () => clearInterval(interval)
+    }
+  }, []);
 
   useEffect(() => {
     dispatch({

@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { store } from "../../store/store";
 
@@ -12,37 +12,20 @@ const CarouselButtonElement = styled.button`
 `;
 
 const CarouselButton = ({ previous }) => {
-  const {state, dispatch} = useContext(store);
-  const {activeItem, childCount, carouselWidth} = state;
+  const { state, dispatch } = useContext(store);
+  const { activeItem, childCount } = state;
 
   const handleNext = () => {
-    if (activeItem === childCount - 1) {
-      dispatch({ type: "setTranslateValue", payload: 0 });
-      dispatch({ type: "updateActiveItem", payload: 0 });
-      return;
-    }
-
-    dispatch({ type: "updateActiveItem", payload: activeItem + 1 });
     dispatch({
-      type: "setTranslateValue",
-      payload: (activeItem + 1) * carouselWidth
+      type: "setNextItem",
+      payload: { isLast: activeItem === childCount - 1 }
     });
   };
 
   const handlePrev = () => {
-    if (activeItem === 0) {
-      dispatch({
-        type: "setTranslateValue",
-        payload: (childCount - 1) * carouselWidth
-      });
-      dispatch({ type: "updateActiveItem", payload: childCount - 1 });
-      return;
-    }
-
-    dispatch({ type: "updateActiveItem", payload: activeItem - 1 });
     dispatch({
-      type: "setTranslateValue",
-      payload: (activeItem - 1) * carouselWidth
+      type: 'setPreviousItem',
+      payload: {isFirst: activeItem === 0}
     });
   };
 
@@ -57,7 +40,7 @@ const CarouselButton = ({ previous }) => {
 
   return (
     <CarouselButtonElement onClick={handleClick} previous={previous}>
-      {previous ? 'Prev' : 'Next'}
+      {previous ? "Prev" : "Next"}
     </CarouselButtonElement>
   );
 };
