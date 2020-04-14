@@ -10,7 +10,7 @@ const CarouselButtonElement = styled.button`
   ${props => (props.previous ? "left: 10px;" : "right: 10px;")};
   z-index: 9;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) scale(1);
   background: rgba(0,0,0,0.75);
   border: none;
   padding: 0;
@@ -20,9 +20,12 @@ const CarouselButtonElement = styled.button`
   align-items: center;
   padding: 0.5rem 0;
   border-radius: 3px;
+  transition: all .3s ease;
+  box-shadow: 0 0 3px rgba(0,0,0,0.16), 0 0 3px rgba(0,0,0,0.23);
 
   &:hover {
     cursor: pointer;
+    transform: translateY(-50%) scale(1.05);
   }
 `;
 
