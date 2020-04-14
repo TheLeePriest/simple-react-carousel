@@ -13,6 +13,12 @@ const Item = styled.li`
 
 const ChildWrapper = styled.div`
   position: relative;
+  max-width: 100%;
+  display: inherit;
+
+  > *:first-child {
+    max-width: 100%;
+  }
 `;
 
 const CarouselItem = ({ children }) => {

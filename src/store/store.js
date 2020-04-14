@@ -19,6 +19,13 @@ const StateProvider = ({
           return { ...state, carouselWidth: payload };
         case "setTranslateValue":
           return { ...state, translateValue: payload };
+        case "setToSpecificItem": {
+          return {
+            ...state,
+            activeItem: payload,
+            translateValue: (payload) * state.carouselWidth
+          };
+        }
         case "setNextItem": {
           if (payload.isLast) {
             return { ...state, translateValue: 0, activeItem: 0 };

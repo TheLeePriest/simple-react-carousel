@@ -4,6 +4,7 @@ import { store } from "../../store/store";
 import CarouselItem from "../CarouselItem/CarouselItem";
 import useWindowResizeEvent from "../../hooks/useWindowResizeEvent";
 import CarouselButton from "../CarouselButton/CarouselButton";
+import Indicators from "../Indicators/Indicators";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -21,6 +22,8 @@ const CarouselWrapper = styled.ul`
   padding: 0;
   margin: 0;
   list-style: none;
+  justify-content: center;
+  align-items: center;
 `;
 
 const getWidth = element => {
@@ -49,7 +52,6 @@ const Carousel = ({ children }) => {
   });
 
   useEffect(() => {
-    console.log(autoPlay, 'logging autoPlay in useEffect')
     if(autoPlay) {
       const play = () => {
         autoPlayRef.current()
@@ -86,6 +88,7 @@ const Carousel = ({ children }) => {
         {renderChildren()}
       </CarouselWrapper>
       <CarouselButton />
+      <Indicators />
     </Wrapper>
   );
 };
