@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
+import { store } from "../../store/store";
 
 const Item = styled.li`
   left: 0;
@@ -9,6 +10,7 @@ const Item = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: ${props => props.active ? '1' : '0'};
 `;
 
 const ChildWrapper = styled.div`
@@ -21,9 +23,12 @@ const ChildWrapper = styled.div`
   }
 `;
 
-const CarouselItem = ({ children }) => {
+const CarouselItem = ({ children, index }) => {
+  const {state} = useContext(store);
+  const {activeItem} = state;
+
   return (
-    <Item>
+    <Item data-testid={`carouselItem-${index}`} active={index === activeItem} data-active={index === activeItem}>
       <ChildWrapper>{children}</ChildWrapper>
     </Item>
   );

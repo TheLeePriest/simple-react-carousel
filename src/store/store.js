@@ -6,7 +6,7 @@ const { Provider } = store;
 
 const StateProvider = ({
   children,
-  childCount,
+  childCount = 0,
   autoPlay = false,
   autoChangeTime = 3
 }) => {
@@ -23,7 +23,7 @@ const StateProvider = ({
           return {
             ...state,
             activeItem: payload,
-            translateValue: (payload) * state.carouselWidth
+            translateValue: payload * state.carouselWidth
           };
         }
         case "setNextItem": {

@@ -24,6 +24,7 @@ const CarouselWrapper = styled.ul`
   list-style: none;
   justify-content: center;
   align-items: center;
+  text-align: center;
 `;
 
 const getWidth = element => {
@@ -31,11 +32,19 @@ const getWidth = element => {
     const { width } = element.getBoundingClientRect();
     return width;
   }
+
+  return 500;
 };
 
 const Carousel = ({ children }) => {
   const { state, dispatch } = useContext(store);
-  const { activeItem, translateValue, autoPlay, autoChangeTime, childCount } = state;
+  const {
+    activeItem,
+    translateValue,
+    autoPlay,
+    autoChangeTime,
+    childCount
+  } = state;
   const wrapperRef = useRef(null);
   const windowWidth = useWindowResizeEvent();
   const autoPlayRef = useRef(null);
@@ -52,13 +61,13 @@ const Carousel = ({ children }) => {
   });
 
   useEffect(() => {
-    if(autoPlay) {
+    if (autoPlay) {
       const play = () => {
-        autoPlayRef.current()
+        autoPlayRef.current();
       };
 
       const interval = setInterval(play, autoChangeTime * 1000);
-      return () => clearInterval(interval)
+      return () => clearInterval(interval);
     }
   }, []);
 
@@ -75,10 +84,30 @@ const Carousel = ({ children }) => {
   }, [wrapperRef]);
 
   const renderChildren = () =>
-    children.map((child, i) => <CarouselItem key={i}>{child}</CarouselItem>);
+    children.map((child, i) => (
+      <CarouselItem key={i} index={i}>
+        {child}
+      </CarouselItem>
+    ));
+
+  if (!children) {
+    return (
+      <Wrapper tabIndex={0} ref={wrapperRef} data-testid="carousel-wrapper-no-children">
+        <CarouselWrapper
+          translateValue={translateValue}
+          style={{
+            width: "100%",
+            transform: `translate(-${translateValue}px, 0)`
+          }}
+        >
+          <h2>You need to pass some elements in to navigate through!</h2>
+        </CarouselWrapper>
+      </Wrapper>
+    );
+  }
 
   return (
-    <Wrapper tabIndex={0} ref={wrapperRef}>
+    <Wrapper tabIndex={0} ref={wrapperRef} data-testid="carousel-wrapper">
       <CarouselButton previous />
       <CarouselWrapper
         translateValue={translateValue}
