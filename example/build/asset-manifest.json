@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/simple-react-carousel/static/css/main.1b9bcb54.chunk.css",
+    "main.js": "/simple-react-carousel/static/js/main.213caab7.chunk.js",
+    "main.js.map": "/simple-react-carousel/static/js/main.213caab7.chunk.js.map",
+    "runtime-main.js": "/simple-react-carousel/static/js/runtime-main.a9f7e1d7.js",
+    "runtime-main.js.map": "/simple-react-carousel/static/js/runtime-main.a9f7e1d7.js.map",
+    "static/js/2.44dbbe47.chunk.js": "/simple-react-carousel/static/js/2.44dbbe47.chunk.js",
+    "static/js/2.44dbbe47.chunk.js.map": "/simple-react-carousel/static/js/2.44dbbe47.chunk.js.map",
+    "index.html": "/simple-react-carousel/index.html",
+    "precache-manifest.24f6431422b13c42c55d04ec2b1a3c9d.js": "/simple-react-carousel/precache-manifest.24f6431422b13c42c55d04ec2b1a3c9d.js",
+    "service-worker.js": "/simple-react-carousel/service-worker.js",
+    "static/css/main.1b9bcb54.chunk.css.map": "/simple-react-carousel/static/css/main.1b9bcb54.chunk.css.map",
+    "static/js/2.44dbbe47.chunk.js.LICENSE.txt": "/simple-react-carousel/static/js/2.44dbbe47.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a9f7e1d7.js",
+    "static/js/2.44dbbe47.chunk.js",
+    "static/css/main.1b9bcb54.chunk.css",
+    "static/js/main.213caab7.chunk.js"
+  ]
+}
