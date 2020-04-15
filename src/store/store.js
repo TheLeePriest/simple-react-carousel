@@ -7,7 +7,8 @@ const StateProvider = ({
   children,
   childCount = 0,
   autoPlay = false,
-  autoChangeTime = 3
+  autoChangeTime = 3,
+  showIndicators = true
 }) => {
   const [state, dispatch] = useReducer(
     (state, { type, payload }) => {
@@ -61,7 +62,8 @@ const StateProvider = ({
       translateValue: 0,
       carouselWidth: 0,
       autoPlay,
-      autoChangeTime
+      autoChangeTime,
+      showIndicators
     }
   );
 

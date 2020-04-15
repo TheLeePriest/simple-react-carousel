@@ -43,7 +43,8 @@ const Carousel = ({ children }) => {
     translateValue,
     autoPlay,
     autoChangeTime,
-    childCount
+    childCount,
+    showIndicators
   } = state;
   const wrapperRef = useRef(null);
   const windowWidth = useWindowResizeEvent();
@@ -121,7 +122,7 @@ const Carousel = ({ children }) => {
         {renderChildren()}
       </CarouselWrapper>
       <CarouselButton />
-      <Indicators />
+      {showIndicators && <Indicators />}
     </Wrapper>
   );
 };
