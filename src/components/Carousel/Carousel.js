@@ -92,7 +92,11 @@ const Carousel = ({ children }) => {
 
   if (!children) {
     return (
-      <Wrapper tabIndex={0} ref={wrapperRef} data-testid="carousel-wrapper-no-children">
+      <Wrapper
+        tabIndex={0}
+        ref={wrapperRef}
+        data-testid="carousel-wrapper-no-children"
+      >
         <CarouselWrapper
           translateValue={translateValue}
           style={{

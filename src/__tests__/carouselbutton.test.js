@@ -8,6 +8,6 @@ test("It loads the next button", () => {
 });
 
 test("It loads the previous button as the previous prop is passed in", () => {
-  const { getByTestId, debug } = render(<CarouselButton previous />);
+  const { getByTestId } = render(<CarouselButton previous />);
   expect(getByTestId("previous-chevron")).toBeInTheDocument();
 });

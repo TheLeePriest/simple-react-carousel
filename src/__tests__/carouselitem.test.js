@@ -8,7 +8,7 @@ test("It loads!", () => {
 });
 
 test("It renders the children", () => {
-  const { getByTestId, debug, getByText } = render(
+  const { getByTestId, getByText } = render(
     <CarouselItem index={0}>
       <div data-testid="test-div">
         <p>I am a paragraph</p>

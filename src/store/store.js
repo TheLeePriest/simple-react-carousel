@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from "react";
-import PropTypes from "prop-types";
 
 const store = createContext({});
 const { Provider } = store;
@@ -68,7 +67,5 @@ const StateProvider = ({
 
   return <Provider value={{ state, dispatch }}>{children}</Provider>;
 };
-
-StateProvider.propTypes = {};
 
 export { store, StateProvider };

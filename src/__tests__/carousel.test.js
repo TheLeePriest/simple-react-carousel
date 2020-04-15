@@ -1,7 +1,7 @@
 import React from "react";
 import Carousel from "../components/Carousel/Carousel";
 import { render } from "../test-utils";
-import {StateProvider} from "../store/store";
+import { StateProvider } from "../store/store";
 
 test("It loads displaying a message that no children have been passed", () => {
   const { getByTestId } = render(<Carousel />);
@@ -52,7 +52,7 @@ test("It loads and sets the first slide to active", async () => {
     </StateProvider>
   );
 
-  expect(getByTestId(/carouselItem-0/)).toHaveAttribute('data-active', 'true');
+  expect(getByTestId(/carouselItem-0/)).toHaveAttribute("data-active", "true");
 });
 
 test("It loads and sets the first indicator to active", async () => {
@@ -65,5 +65,5 @@ test("It loads and sets the first indicator to active", async () => {
     </StateProvider>
   );
   const firstElement = getByTestId("indicator-0");
-  expect(firstElement).toHaveAttribute('data-active', 'true');
+  expect(firstElement).toHaveAttribute("data-active", "true");
 });
