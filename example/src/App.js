@@ -6,7 +6,7 @@ import "simple-react-carousel/dist/index.css";
 const App = () => {
   return (
     <div style={{width: "500px"}}>
-      <SimpleCarousel showIndicators={false}>
+      <SimpleCarousel>
         <img src="https://picsum.photos/200/300" alt="You can use images in the carousel!"/>
         <div>
           <h2>OMG Text!</h2>
