@@ -7,13 +7,13 @@ A very simple carousel built using react
 Use the package your package manager of choice to install
 
 ```javascript
-npm install @theleepriest/simple-react-carousel
+npm install simple-react-carousel
 ```
 
 or
 
 ```javascript
-yarn add @theleepriest/simple-react-carousel
+yarn add simple-react-carousel
 ```
 
 ## Usage
