@@ -8,7 +8,9 @@ const StateProvider = ({
   childCount = 0,
   autoPlay = false,
   autoChangeTime = 3,
-  showIndicators = true
+  showIndicators = true,
+  contentCoversContainer = true,
+  itemFit = "cover"
 }) => {
   const [state, dispatch] = useReducer(
     (state, { type, payload }) => {
@@ -63,7 +65,9 @@ const StateProvider = ({
       carouselWidth: 0,
       autoPlay,
       autoChangeTime,
-      showIndicators
+      showIndicators,
+      contentCoversContainer,
+      itemFit
     }
   );
 

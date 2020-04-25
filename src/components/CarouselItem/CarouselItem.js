@@ -15,17 +15,24 @@ const Item = styled.li`
 
 const ChildWrapper = styled.div`
   position: relative;
-  max-width: 100%;
   display: inherit;
+  max-width: 100%;
+  flex: ${({ coverContainer }) => (coverContainer ? "1" : "unset")};
+  height: 100%;
 
   > *:first-child {
     max-width: 100%;
+    width: ${({ width }) => `${width}px`};
+    flex: ${({ coverContainer }) => (coverContainer ? "1" : "unset")};
+    object-fit: ${({ coverContainer, itemFit }) =>
+      coverContainer ? itemFit : "unset"};
   }
 `;
 
-const CarouselItem = ({ children, index }) => {
+const CarouselItem = ({ children, index, overrideFit = false }) => {
   const { state } = useContext(store);
-  const { activeItem } = state;
+  const { activeItem, contentCoversContainer, carouselWidth, itemFit } = state;
+  const objectFitValue = overrideFit || itemFit;
 
   return (
     <Item
@@ -33,7 +40,13 @@ const CarouselItem = ({ children, index }) => {
       active={index === activeItem}
       data-active={index === activeItem}
     >
-      <ChildWrapper>{children}</ChildWrapper>
+      <ChildWrapper
+        coverContainer={contentCoversContainer}
+        width={carouselWidth}
+        itemFit={objectFitValue}
+      >
+        {children}
+      </ChildWrapper>
     </Item>
   );
 };

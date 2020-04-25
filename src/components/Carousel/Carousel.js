@@ -18,7 +18,8 @@ const CarouselWrapper = styled.ul`
   flex-wrap: no-wrap;
   transition: all 250ms ease-in-out;
   position: relative;
-  width: ${props => props.width}px;
+  width: ${({ width }) => width}px;
+  height: ${({ height }) => height}px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -27,13 +28,13 @@ const CarouselWrapper = styled.ul`
   text-align: center;
 `;
 
-const getWidth = element => {
+const getDimensions = element => {
   if (element) {
-    const { width } = element.getBoundingClientRect();
-    return width;
+    const { width, height } = element.getBoundingClientRect();
+    return { width, height };
   }
 
-  return 500;
+  return { width: 500, height: 500 };
 };
 
 const Carousel = ({ children }) => {
@@ -75,7 +76,7 @@ const Carousel = ({ children }) => {
   useEffect(() => {
     dispatch({
       type: "setTranslateValue",
-      payload: activeItem * getWidth(wrapperRef.current)
+      payload: activeItem * getDimensions(wrapperRef.current).width
     });
   }, [windowWidth]);
 
@@ -86,7 +87,7 @@ const Carousel = ({ children }) => {
 
   const renderChildren = () =>
     children.map((child, i) => (
-      <CarouselItem key={i} index={i}>
+      <CarouselItem key={i} index={i} overrideFit={child.props["data-itemFit"]}>
         {child}
       </CarouselItem>
     ));
@@ -116,7 +117,8 @@ const Carousel = ({ children }) => {
       <CarouselButton previous />
       <CarouselWrapper
         translateValue={translateValue}
-        width={getWidth(wrapperRef.current) * children.length}
+        width={getDimensions(wrapperRef.current).width * children.length}
+        height={getDimensions(wrapperRef.current).height}
         style={{ transform: `translate(-${translateValue}px, 0)` }}
       >
         {renderChildren()}
