@@ -1,6 +1,11 @@
 ## Changelog
 
+## 1.1.1
+
+- Minor styling update to fix height issue on main carousel wrapper
+
 ## 1.1.0
+
 - Add boolean option `contentCoversContainer` that sets slides to fill the available space
 - Add string option `itemFit` that allows the user to choose from the CSS object-fit properties
   to decide how the items object-fit CSS property is specified. This option will be applied to
@@ -10,7 +15,9 @@
 - Updated the readme
 
 ## 1.0.1
+
 - Update readme
 
 ## 1.0.0
+
 - Initial release
