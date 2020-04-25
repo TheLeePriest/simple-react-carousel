@@ -10,6 +10,8 @@ const Wrapper = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
+  height: 100vh;
+  max-height: 100%;
 `;
 
 const CarouselWrapper = styled.ul`
