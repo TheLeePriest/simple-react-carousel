@@ -1,5 +1,9 @@
 ## Changelog
 
+## 1.1.2
+
+- Fill empty indicator array with placeholder content to fix indicators not rendering
+
 ## 1.1.1
 
 - Minor styling update to fix height issue on main carousel wrapper
