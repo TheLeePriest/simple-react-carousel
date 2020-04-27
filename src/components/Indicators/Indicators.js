@@ -39,7 +39,7 @@ const Indicators = () => {
   };
 
   const renderIndicators = () => {
-    return [...Array(childCount)].map((_, index) => (
+    return [...Array(childCount).fill("")].map((_, index) => (
       <Indicator
         key={`indicator-${index}`}
         data-testid={`indicator-${index}`}
