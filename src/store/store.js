@@ -1,4 +1,8 @@
 import React, { createContext, useReducer } from "react";
+import {
+  defaultControlsOptions,
+  defaultIndicatorOptions
+} from "./defaultOptions";
 
 const store = createContext({});
 const { Provider } = store;
@@ -8,9 +12,10 @@ const StateProvider = ({
   childCount = 0,
   autoPlay = false,
   autoChangeTime = 3,
-  showIndicators = true,
   contentCoversContainer = true,
-  itemFit = "cover"
+  itemFit = "cover",
+  controlsOptions,
+  indicatorOptions
 }) => {
   const [state, dispatch] = useReducer(
     (state, { type, payload }) => {
@@ -65,9 +70,16 @@ const StateProvider = ({
       carouselWidth: 0,
       autoPlay,
       autoChangeTime,
-      showIndicators,
       contentCoversContainer,
-      itemFit
+      itemFit,
+      controlsOptions: {
+        ...defaultControlsOptions,
+        ...controlsOptions
+      },
+      indicatorOptions: {
+        ...defaultIndicatorOptions,
+        ...indicatorOptions
+      }
     }
   );
 

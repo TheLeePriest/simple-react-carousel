@@ -6,7 +6,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  width: ${props => props.width}px;
   justify-content: space-between;
   margin: auto;
   position: absolute;
@@ -16,12 +15,30 @@ const Wrapper = styled.div`
 `;
 
 const Indicator = styled.div`
-  width: 20px;
-  height: 5px;
-  background-color: ${props =>
-    props.active ? "rgba(0,0,0,0.75)" : "rgba(255,255,255,0.75)"};
-  border-radius: 50px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.16), 0 0 3px rgba(0, 0, 0, 0.23);
+  ${({ options }) => {
+    switch (options.shape) {
+      case "square": {
+        return `width: ${options.width};
+          height: ${options.width};
+          border-radius: 0;
+          `;
+      }
+      case "circle": {
+        return `width: ${options.width};
+          height: ${options.width};
+          border-radius: 50%;
+          `;
+      }
+      default:
+        return `width: ${options.width};
+              height: ${options.height};
+              border-radius: 50px;`;
+    }
+  }}}
+  border: ${({ options }) => options.border};
+  background-color: ${({ active, options }) =>
+    active ? options.activeColor : options.inactiveColor};
+  box-shadow: ${({ options }) => options.boxShadow};
   transition: all 0.3s ease;
 
   &:hover {
@@ -31,7 +48,7 @@ const Indicator = styled.div`
 
 const Indicators = () => {
   const { state, dispatch } = useContext(store);
-  const { childCount, activeItem } = state;
+  const { childCount, activeItem, indicatorOptions } = state;
   const [wrapperWidth, setWrapperWidth] = useState(20 * childCount);
 
   const handleClick = index => {
@@ -46,6 +63,7 @@ const Indicators = () => {
         data-active={index === activeItem}
         active={index === activeItem}
         onClick={() => handleClick(index)}
+        options={indicatorOptions}
       />
     ));
   };
@@ -55,7 +73,10 @@ const Indicators = () => {
   }, [childCount]);
 
   return (
-    <Wrapper width={wrapperWidth || 0} data-testid="indicators">
+    <Wrapper
+      style={{ width: `${wrapperWidth}px` || `0px` }}
+      data-testid="indicators"
+    >
       {renderIndicators()}
     </Wrapper>
   );

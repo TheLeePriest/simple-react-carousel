@@ -47,7 +47,8 @@ const Carousel = ({ children }) => {
     autoPlay,
     autoChangeTime,
     childCount,
-    showIndicators
+    controlsOptions,
+    indicatorOptions
   } = state;
   const wrapperRef = useRef(null);
   const windowWidth = useWindowResizeEvent();
@@ -114,9 +115,12 @@ const Carousel = ({ children }) => {
     );
   }
 
+  console.log(indicatorOptions);
+
   return (
     <Wrapper tabIndex={0} ref={wrapperRef} data-testid="carousel-wrapper">
-      <CarouselButton previous />
+      {controlsOptions.show && <CarouselButton previous />}
+
       <CarouselWrapper
         translateValue={translateValue}
         width={getDimensions(wrapperRef.current).width * children.length}
@@ -125,8 +129,10 @@ const Carousel = ({ children }) => {
       >
         {renderChildren()}
       </CarouselWrapper>
-      <CarouselButton />
-      {showIndicators && <Indicators />}
+
+      {controlsOptions.show && <CarouselButton />}
+
+      {indicatorOptions.show && <Indicators />}
     </Wrapper>
   );
 };

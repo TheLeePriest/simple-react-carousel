@@ -1,5 +1,11 @@
 ## Changelog
 
+## 1.2.0
+
+- Add config options `controlsOptions` to allow for customisation of carousel controls
+- Add config options `indicatorOptions` to allow for customisation of slide indicators
+- Set defaults for both `controlsOptions` and `indicatorOptions`
+
 ## 1.1.2
 
 - Fill empty indicator array with placeholder content to fix indicators not rendering

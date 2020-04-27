@@ -8,7 +8,9 @@ const SimpleCarousel = ({
   autoChangeTime,
   showIndicators,
   contentCoversContainer,
-  itemFit
+  itemFit,
+  controlsOptions,
+  indicatorOptions
 }) => (
   <StateProvider
     childCount={children ? children.length : 0}
@@ -17,6 +19,8 @@ const SimpleCarousel = ({
     showIndicators={showIndicators}
     contentCoversContainer={contentCoversContainer}
     itemFit={itemFit}
+    controlsOptions={controlsOptions}
+    indicatorOptions={indicatorOptions}
   >
     <Carousel>{children}</Carousel>
   </StateProvider>
