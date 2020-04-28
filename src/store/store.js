@@ -15,7 +15,9 @@ const StateProvider = ({
   contentCoversContainer = true,
   itemFit = "cover",
   controlsOptions,
-  indicatorOptions
+  indicatorOptions,
+  slideTransitionValue = 0.3,
+  currentSlideTransition = slideTransitionValue
 }) => {
   const [state, dispatch] = useReducer(
     (state, { type, payload }) => {
@@ -30,34 +32,48 @@ const StateProvider = ({
           return {
             ...state,
             activeItem: payload,
-            translateValue: payload * state.carouselWidth
+            translateValue: state.translateValue + state.carouselWidth
           };
         }
         case "setNextItem": {
-          if (payload.isLast) {
-            return { ...state, translateValue: 0, activeItem: 0 };
-          } else {
-            return {
-              ...state,
-              activeItem: state.activeItem + 1,
-              translateValue: (state.activeItem + 1) * state.carouselWidth
-            };
-          }
+          return {
+            ...state,
+            translateValue: state.translateValue + state.carouselWidth,
+            activeItem:
+              state.activeItem === childCount - 1 ? 0 : state.activeItem + 1
+          };
         }
         case "setPreviousItem": {
-          if (payload.isFirst) {
-            return {
-              ...state,
-              activeItem: childCount - 1,
-              translateValue: (childCount - 1) * state.carouselWidth
-            };
-          } else {
-            return {
-              ...state,
-              activeItem: state.activeItem - 1,
-              translateValue: (state.activeItem - 1) * state.carouselWidth
-            };
-          }
+          return {
+            ...state,
+            translateValue: 0,
+            activeItem:
+              state.activeItem === 0 ? childCount - 1 : state.activeItem - 1
+          };
+        }
+        case "setActiveSlidesArray": {
+          return {
+            ...state,
+            activeSlides: payload
+          };
+        }
+        case "setCurrentSlideTransitionValue": {
+          return {
+            ...state,
+            currentSlideTransition: payload
+          };
+        }
+        case "triggerSlideTransition": {
+          return {
+            ...state,
+            ...payload
+          };
+        }
+        case "handleWindowResize": {
+          return {
+            ...state,
+            ...payload
+          };
         }
         default:
           return state;
@@ -79,7 +95,14 @@ const StateProvider = ({
       indicatorOptions: {
         ...defaultIndicatorOptions,
         ...indicatorOptions
-      }
+      },
+      activeSlides: [
+        children.props.children[0],
+        children.props.children[1] || null,
+        children.props.children[children.props.children.length - 1] || null
+      ],
+      slideTransitionValue,
+      currentSlideTransition
     }
   );
 

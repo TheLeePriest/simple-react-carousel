@@ -63,7 +63,8 @@ const CarouselButtonElement = styled.button`
   justify-content: center;
   align-items: center;
   padding: 0.5rem 0;
-  transition: all 0.3s ease;
+  transition: all ease
+    ${({ currentSlideTransition }) => currentSlideTransition}s;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.16), 0 0 3px rgba(0, 0, 0, 0.23);
 
   &:hover {
@@ -81,19 +82,17 @@ const CarouselButtonElement = styled.button`
 
 const CarouselButton = ({ previous }) => {
   const { state, dispatch } = useContext(store);
-  const { activeItem, childCount, controlsOptions } = state;
+  const { controlsOptions, currentSlideTransition } = state;
 
   const handleNext = () => {
     dispatch({
-      type: "setNextItem",
-      payload: { isLast: activeItem === childCount - 1 }
+      type: "setNextItem"
     });
   };
 
   const handlePrev = () => {
     dispatch({
-      type: "setPreviousItem",
-      payload: { isFirst: activeItem === 0 }
+      type: "setPreviousItem"
     });
   };
 
@@ -145,6 +144,7 @@ const CarouselButton = ({ previous }) => {
       onClick={handleClick}
       previous={previous}
       options={controlsOptions}
+      currentSlideTransition={currentSlideTransition}
     >
       {renderButtonBody()}
     </CarouselButtonElement>
