@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from "react";
+import React, { useContext, useRef, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { store } from "../../store/store";
 import CarouselItem from "../CarouselItem/CarouselItem";
@@ -57,6 +57,20 @@ const Carousel = ({ children }) => {
       payload: { isLast: activeItem === childCount - 1 }
     });
   };
+
+  const setActiveSlides = useCallback(() => {
+    dispatch({
+      type: "setActiveSlidesArray",
+      payload: children.slice(children.slice(0, activeItem + 3))
+    });
+  }, [children]);
+
+  useEffect(() => {
+    if (!children) {
+      return;
+    }
+    setActiveSlides();
+  }, []);
 
   useEffect(() => {
     autoPlayRef.current = handleNext;

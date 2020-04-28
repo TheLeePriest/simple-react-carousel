@@ -96,11 +96,7 @@ const StateProvider = ({
         ...defaultIndicatorOptions,
         ...indicatorOptions
       },
-      activeSlides: [
-        children.props.children[0],
-        children.props.children[1] || null,
-        children.props.children[children.props.children.length - 1] || null
-      ],
+      activeSlides: [],
       slideTransitionValue,
       currentSlideTransition
     }

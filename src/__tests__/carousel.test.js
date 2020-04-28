@@ -38,8 +38,8 @@ test("It loads with two children and only the first is visible", async () => {
     </StateProvider>
   );
 
-  expect(getByTestId(/first-slide/)).toBeVisible();
-  expect(getByTestId(/second-slide/)).not.toBeVisible();
+  expect(getByTestId(/carouselItem-0/)).toHaveAttribute("data-active", "true");
+  expect(getByTestId(/carouselItem-1/)).toHaveAttribute("data-active", "false");
 });
 
 test("It loads and sets the first slide to active", async () => {
