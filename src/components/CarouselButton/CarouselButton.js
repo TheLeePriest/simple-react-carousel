@@ -50,7 +50,7 @@ const CarouselButtonElement = styled.button`
 
   ${({ options }) => {
     if (options.position === "middle") {
-      return "transform: translateY(-50%) scale(1);";
+      return "transform: scale(1);";
     }
   }}
 
