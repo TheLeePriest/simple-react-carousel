@@ -1,5 +1,9 @@
 ## Changelog
 
+## 1.3.0
+
+- Refactor the transition animation on slide change to be more natural
+
 ## 1.2.1
 
 - Fix button hover transform scaling incorrectly
