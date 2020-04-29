@@ -1,5 +1,9 @@
 ## Changelog
 
+## 1.3.1
+
+- Update example in readme doc to have correct import
+
 ## 1.3.0
 
 - Refactor the transition animation on slide change to be more natural

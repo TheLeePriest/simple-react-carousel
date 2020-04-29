@@ -21,7 +21,7 @@ yarn add simple-react-carousel
 Import the SimpleCarousel component and add your slides as child elements inside.
 
 ```
-import SimpleCarousel from '@theleepriest/simple-react-carousel';
+import SimpleCarousel from 'simple-react-carousel';
 
 <SimpleCarousel>
   <img src="https://picsum.photos/200/300" alt="You can use images in the carousel!"/>
