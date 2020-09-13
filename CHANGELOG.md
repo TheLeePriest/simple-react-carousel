@@ -1,5 +1,9 @@
 ## Changelog
 
+## 1.3.4
+
+- Use different check method on children for button rendering
+
 ## 1.3.3
 
 - Npm publish fix
