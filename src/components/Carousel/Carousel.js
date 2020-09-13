@@ -59,7 +59,7 @@ const Carousel = ({ children }) => {
   };
 
   const setActiveSlides = useCallback(() => {
-    if(Array.isArray(children)) {
+    if (Array.isArray(children)) {
       dispatch({
         type: "setActiveSlidesArray",
         payload: children.slice(children.slice(0, activeItem + 3))
@@ -194,7 +194,9 @@ const Carousel = ({ children }) => {
 
   return (
     <Wrapper tabIndex={0} ref={wrapperRef} data-testid="carousel-wrapper">
-      {controlsOptions.show && children.length > 0 && <CarouselButton previous />}
+      {controlsOptions.show && children.length > 0 && (
+        <CarouselButton previous />
+      )}
 
       <CarouselWrapper
         translateValue={translateValue}

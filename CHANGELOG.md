@@ -1,5 +1,9 @@
 ## Changelog
 
+## 1.3.3
+
+- Npm publish fix
+
 ## 1.3.2
 
 - Add aria-labels to buttons, only show navigation buttons if more than 1 slide

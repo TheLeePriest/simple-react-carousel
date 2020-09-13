@@ -145,7 +145,7 @@ const CarouselButton = ({ previous }) => {
       previous={previous}
       options={controlsOptions}
       currentSlideTransition={currentSlideTransition}
-      aria-label={`${previous ? 'Previous' : 'Next'} image button`}
+      aria-label={`${previous ? "Previous" : "Next"} image button`}
     >
       {renderButtonBody()}
     </CarouselButtonElement>
