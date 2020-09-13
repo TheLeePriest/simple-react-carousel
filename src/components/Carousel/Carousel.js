@@ -194,7 +194,7 @@ const Carousel = ({ children }) => {
 
   return (
     <Wrapper tabIndex={0} ref={wrapperRef} data-testid="carousel-wrapper">
-      {controlsOptions.show && children.length > 0 && (
+      {controlsOptions.show && Array.isArray(children) && (
         <CarouselButton previous />
       )}
 
@@ -208,7 +208,7 @@ const Carousel = ({ children }) => {
         {renderChildren()}
       </CarouselWrapper>
 
-      {controlsOptions.show && children.length > 0 && <CarouselButton />}
+      {controlsOptions.show && Array.isArray(children) && <CarouselButton />}
 
       {indicatorOptions.show && <Indicators />}
     </Wrapper>
