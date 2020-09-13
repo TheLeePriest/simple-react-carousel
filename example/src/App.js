@@ -2,21 +2,13 @@ import React from "react";
 import SimpleCarousel from "simple-react-carousel";
 
 const App = () => {
+  const imagesArray = Array(1).fill('https://picsum.photos/1920/1080');
+  const renderImages = (images) => images.map((image, i) => <img key={`${image}-${i}`} src={image} alt={`Test image ${i}`} />);
+
   return (
     <div style={{width: "500px", height: "700px"}}>
       <SimpleCarousel>
-        <img src="https://picsum.photos/1200/600" alt="You can use images in the carousel!" data-itemFit="cover" />
-        <div>
-          <h2>OMG Text!</h2>
-          <p>You can use text here too!</p>
-        </div>
-        <div>
-          <h2>Text and Images!?</h2>
-          <div>
-            <p>Here is a pretty image:</p>
-            <img src="https://picsum.photos/600/600" alt="You can use text and images in the same slide" />
-          </div>
-        </div>
+        {renderImages(imagesArray)}
       </SimpleCarousel>
     </div>
   );
