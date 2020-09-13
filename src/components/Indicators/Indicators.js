@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   right: 0;
 `;
 
-const Indicator = styled.div`
+const Indicator = styled.button`
   ${({ options }) => {
     switch (options.shape) {
       case "square": {
@@ -64,6 +64,7 @@ const Indicators = () => {
         active={index === activeItem}
         onClick={() => handleClick(index)}
         options={indicatorOptions}
+        aria-label={`Image ${index + 1} button`}
       />
     ));
   };

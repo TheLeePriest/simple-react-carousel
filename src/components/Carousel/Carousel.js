@@ -59,9 +59,18 @@ const Carousel = ({ children }) => {
   };
 
   const setActiveSlides = useCallback(() => {
+    if(Array.isArray(children)) {
+      dispatch({
+        type: "setActiveSlidesArray",
+        payload: children.slice(children.slice(0, activeItem + 3))
+      });
+
+      return;
+    }
+
     dispatch({
       type: "setActiveSlidesArray",
-      payload: children.slice(children.slice(0, activeItem + 3))
+      payload: [children]
     });
   }, [children]);
 
@@ -185,7 +194,7 @@ const Carousel = ({ children }) => {
 
   return (
     <Wrapper tabIndex={0} ref={wrapperRef} data-testid="carousel-wrapper">
-      {controlsOptions.show && <CarouselButton previous />}
+      {controlsOptions.show && children.length > 0 && <CarouselButton previous />}
 
       <CarouselWrapper
         translateValue={translateValue}
@@ -197,7 +206,7 @@ const Carousel = ({ children }) => {
         {renderChildren()}
       </CarouselWrapper>
 
-      {controlsOptions.show && <CarouselButton />}
+      {controlsOptions.show && children.length > 0 && <CarouselButton />}
 
       {indicatorOptions.show && <Indicators />}
     </Wrapper>
