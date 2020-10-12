@@ -1,5 +1,9 @@
 ## Changelog
 
+## 1.3.6
+
+- Set type on button element
+
 ## 1.3.5
 
 - Fix for incorrect check on button rendering
