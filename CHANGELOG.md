@@ -1,5 +1,9 @@
 ## Changelog
 
+## 1.3.8
+
+- Add itemFit fallback when pulling from props
+
 ## 1.3.7
 
 - Minor fixes
