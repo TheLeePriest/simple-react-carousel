@@ -43,8 +43,7 @@ const Carousel = ({ children }) => {
     indicatorOptions,
     activeSlides,
     slideTransitionValue,
-    currentSlideTransition,
-    itemFit
+    currentSlideTransition
   } = state;
   const wrapperRef = useRef(null);
   const windowWidth = useWindowResizeEvent();
@@ -169,7 +168,7 @@ const Carousel = ({ children }) => {
       <CarouselItem
         key={i}
         index={i}
-        overrideFit={slide?.props["data-itemFit"] ?? itemFit}
+        overrideFit={slide ? slide?.props["data-itemFit"] : false}
       >
         {slide}
       </CarouselItem>
