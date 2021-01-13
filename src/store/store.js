@@ -13,7 +13,7 @@ const StateProvider = ({
   autoPlay = false,
   autoChangeTime = 3,
   contentCoversContainer = true,
-  itemFit = "cover",
+  itemFit = "contain",
   controlsOptions,
   indicatorOptions,
   slideTransitionValue = 0.3,
