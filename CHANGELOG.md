@@ -1,5 +1,9 @@
 ## Changelog
 
+## 1.3.7
+
+- Minor fixes
+
 ## 1.3.6
 
 - Set type on button element
