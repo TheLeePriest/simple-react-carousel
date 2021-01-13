@@ -169,7 +169,7 @@ const Carousel = ({ children }) => {
       <CarouselItem
         key={i}
         index={i}
-        overrideFit={slide.props["data-itemFit"] ?? itemFit}
+        overrideFit={slide?.props["data-itemFit"] ?? itemFit}
       >
         {slide}
       </CarouselItem>

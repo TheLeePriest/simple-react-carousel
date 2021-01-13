@@ -1,5 +1,9 @@
 ## Changelog
 
+## 1.3.9
+
+- Optional chaining check for itemFit prop
+
 ## 1.3.8
 
 - Add itemFit fallback when pulling from props
