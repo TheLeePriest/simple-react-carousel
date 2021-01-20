@@ -14,6 +14,7 @@ const ChildWrapper = styled.div`
   position: relative;
   display: inherit;
   max-width: 100%;
+  width: 100%;
   flex: ${({ coverContainer }) => (coverContainer ? "1" : "unset")};
   height: 100%;
 
