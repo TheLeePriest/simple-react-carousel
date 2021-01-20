@@ -1,5 +1,9 @@
 ## Changelog
 
+## 1.3.10
+
+- Update wrapper CSS to use 100% height of parent
+
 ## 1.3.9
 
 - Optional chaining check for itemFit prop
